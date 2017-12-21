@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-Description: This is the mysqueezebox binding of the open Home Automati
+ on Bus (openHAB)
+Bundle-License: http://www.eclipse.org/legal/epl-v10.html
+Bundle-SymbolicName: org.openhab.binding.mysqueezebox
+Archiver-Version: Plexus Archiver
+Built-By: michaelnemat
+Require-Bundle: org.apache.httpcomponents.httpcore,org.apache.httpcomp
+ onents.httpclient,org.apache.commons.httpclient
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: openHAB.org
+Bundle-DocURL: http://www.openhab.org
+Import-Package: org.apache.commons.io,org.apache.commons.lang,org.apache.http,org.apache.htt
+ p.auth,org.apache.http.client,org.apache.http.client.methods,org.apac
+ he.http.impl.client,org.apache.http.params;version="4.1.4",org.apache
+ .http.util,org.quartz,org.quartz.impl,org.quartz.impl.calendar,or
+ g.quartz.impl.matchers,org.quartz.utils,org.openhab.core.autoupdate,org.openhab.core.binding,org.o
+ penhab.core.events,org.openhab.core.items,org.openhab.core.library.it
+ ems,org.openhab.core.library.types,org.openhab.core.types,org.openhab
+ .model.item.binding,org.osgi.framework,org.osgi.service.cm,org.osgi.s
+ ervice.component,org.osgi.service.event,org.slf4j
+Service-Component: OSGI-INF/activebinding.xml, OSGI-INF/genericbinding
+ provider.xml
+Export-Package: org.openhab.binding.mysqueezebox
+Bundle-Name: openHAB mysqueezebox Binding
+Bundle-Version: 1.8.2.201608011905
+Bundle-ClassPath: .,lib/json-20140107.jar
+Private-Package: org.openhab.binding.mysqueezebox.internal
+Ignore-Package: org.openhab.binding.mysqueezebox.internal
+Bundle-Activator: org.openhab.binding.mysqueezebox.MySqueezeboxActivator
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_73
+

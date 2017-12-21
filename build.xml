@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project name="openhab-mysqueezebox-alarmclocksensor" default="dist" basedir=".">
+	<description />
+	<property name="app.name" value="org.openhab.binding.mysqueezebox-1.8.0" />
+	<property name="app.author" value="bmartel" />
+	<!-- Change openhab.home to your OpenHAB installation path -->
+	<property name="openhab.home" location="/Serveurs/openHAB-1.8.3" />
+	<property name="dist" location="dist" />
+	<property name="build" location="build" />
+	<property name="buildClasses" location="${build}/bin" />
+
+	<path id="classpath">
+		<fileset dir="lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${openhab.home}">
+			<include name="*server/plugins/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir="${dist}" />
+			<fileset dir="${build}" />
+		</delete>
+	</target>
+
+	<target name="cleanClasses">
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir="${distClasses}" />
+		</delete>
+	</target>
+
+	<target name="prepare" depends="clean">
+		<mkdir dir="${dist}" />
+		<mkdir dir="${build}" />
+		<mkdir dir="${buildClasses}" />
+	</target>
+
+	<target name="compile" depends="prepare" description="Compiles the source code">
+		<javac srcdir="src" destdir="${buildClasses}" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
+			<classpath refid="classpath" />
+		</javac>
+		<!--copy todir="${buildClasses}">
+			<fileset dir="src">
+			</fileset>
+		</copy-->
+	</target>
+
+	<target name="jar" description="Generates the archive" depends="compile">
+		<jar jarfile="${dist}/${app.name}.jar" basedir="${buildClasses}" includes="**/*.*" excludes="" manifest="src/META-INF/MANIFEST.MF">
+			<fileset dir=".">
+				<include name="lib/json-20140107.jar"/>
+			</fileset>
+			<fileset dir="src">
+				<include name="OSGI-INF/**"/>
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="dist_jar" depends="prepare, jar" />
+
+	<target name="dist" description="Generates application archives" depends="clean, dist_jar, cleanClasses" />
+
+</project>
