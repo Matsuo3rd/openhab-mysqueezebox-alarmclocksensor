@@ -1,0 +1,1 @@
+# openhab-mysqueezebox-alarmclocksensor
